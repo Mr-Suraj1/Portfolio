@@ -1,30 +1,45 @@
-# FullStackPortfolio requirements
-
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/mr-suraj1s-projects/v0-full-stack-portfolio-requirements)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/84ncSkMYY2R)
+# FullStackPortfolio
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+A modern, responsive portfolio website built with Next.js and React. This portfolio showcases projects, skills, and professional experience with a clean and interactive design.
 
-## Deployment
+## Features
 
-Your project is live at:
+- Responsive design that works on all devices
+- Modern UI with smooth animations
+- Project showcase section
+- Skills and technologies display
+- Contact information
+- Fast page loads and optimized performance
 
-**[https://vercel.com/mr-suraj1s-projects/v0-full-stack-portfolio-requirements](https://vercel.com/mr-suraj1s-projects/v0-full-stack-portfolio-requirements)**
+## Tech Stack
 
-## Build your app
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
 
-Continue building your app on:
+## Getting Started
 
-**[https://v0.dev/chat/projects/84ncSkMYY2R](https://v0.dev/chat/projects/84ncSkMYY2R)**
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## How It Works
+## Development
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## License
+
+MIT
