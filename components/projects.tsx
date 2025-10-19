@@ -6,8 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github, Code } from "lucide-react"
-import CodeSnippet from "./code-snippet"
+import { ExternalLink, Github } from "lucide-react"
 
 type Repository = {
   id: number
@@ -90,172 +89,6 @@ export default function Projects() {
     }, 1000)
   }, [])
 
-  const codeSnippets = {
-    "E-Commerce Platform": `// Product data fetching with SWR and TypeScript
-import useSWR from 'swr'
-import { Product } from '@/types'
-
-export function useProducts(category?: string) {
-  const { data, error, isLoading } = useSWR<Product[]>(
-    \`/api/products\${category ? \`?category=\${category}\` : ''}\`,
-    fetcher
-  )
-
-  return {
-    products: data || [],
-    isLoading,
-    isError: error
-  }
-}`,
-    "Task Management App": `// Real-time task updates with WebSockets
-import { useEffect, useState } from 'react'
-import { io, Socket } from 'socket.io-client'
-import { Task, Workspace } from '@/types'
-
-export function useTaskUpdates(workspaceId: string) {
-  const [tasks, setTasks] = useState<Task[]>([])
-  const [socket, setSocket] = useState<Socket | null>(null)
-  
-  useEffect(() => {
-    const newSocket = io('/tasks')
-    setSocket(newSocket)
-    
-    newSocket.emit('join', { workspaceId })
-    
-    newSocket.on('taskCreated', (task: Task) => {
-      setTasks(prev => [...prev, task])
-    })
-    
-    return () => {
-      newSocket.disconnect()
-    }
-  }, [workspaceId])
-  
-  return { tasks }
-}`,
-    "Developer Blog": `// MDX rendering with code syntax highlighting
-import { MDXRemote } from 'next-mdx-remote'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-
-const components = {
-  code: ({ className, children, ...props }) => {
-    const match = /language-(\w+)/.exec(className || '')
-    return match ? (
-      <SyntaxHighlighter
-        language={match[1]}
-        style={atomDark}
-        PreTag="div"
-        {...props}
-      >
-        {String(children).replace(/\\n$/, '')}
-      </SyntaxHighlighter>
-    ) : (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    )
-  }
-}
-
-export default function BlogPost({ source }) {
-  return <MDXRemote {...source} components={components} />
-}`,
-    "Real-time Chat Application": `// Firebase real-time messaging implementation
-import { useEffect, useState } from 'react'
-import { 
-  collection, 
-  query, 
-  where, 
-  orderBy, 
-  onSnapshot, 
-  addDoc, 
-  serverTimestamp 
-} from 'firebase/firestore'
-import { db, auth } from '@/lib/firebase'
-
-export function useChat(chatId) {
-  const [messages, setMessages] = useState([])
-  
-  useEffect(() => {
-    const q = query(
-      collection(db, 'messages'),
-      where('chatId', '==', chatId),
-      orderBy('createdAt')
-    )
-    
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      const newMessages = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }))
-      setMessages(newMessages)
-    })
-    
-    return unsubscribe
-  }, [chatId])
-  
-  return { messages }
-}`,
-    "Portfolio Generator": `// Dynamic template rendering with Next.js
-import { useState, useEffect } from 'react'
-import { getGithubData } from '@/lib/github'
-import { generatePortfolio } from '@/lib/generator'
-
-export default function PortfolioBuilder({ username, template }) {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const githubData = await getGithubData(username)
-        setData(githubData)
-      } catch (error) {
-        console.error('Failed to fetch GitHub data', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    
-    fetchData()
-  }, [username])
-  
-  if (loading) return <div>Loading...</div>
-  
-  return generatePortfolio(data, template)
-}`,
-    "API Gateway Service": `// Express middleware for API rate limiting
-import rateLimit from 'express-rate-limit'
-import RedisStore from 'rate-limit-redis'
-import { createClient } from 'redis'
-
-const client = createClient({
-  url: process.env.REDIS_URL
-})
-
-export const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-  standardHeaders: true,
-  legacyHeaders: false,
-  store: new RedisStore({
-    sendCommand: (...args) => client.sendCommand(args),
-  }),
-  handler: (req, res) => {
-    res.status(429).json({
-      error: 'Too many requests, please try again later.'
-    })
-  }
-})
-
-// Usage in Express app
-app.use('/api/', apiLimiter)
-app.use('/api/auth', authRoutes)
-app.use('/api/users', userRoutes)
-`,
-  }
-
   const filteredRepos =
     activeTab === "all" ? repos : repos.filter((repo) => repo.topics.includes(activeTab.toLowerCase()))
 
@@ -319,17 +152,6 @@ app.use('/api/users', userRoutes)
                           </Badge>
                         ))}
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full mt-2"
-                        onClick={() => {
-                          document.getElementById(`code-${repo.id}`)?.scrollIntoView({ behavior: "smooth" })
-                        }}
-                      >
-                        <Code className="mr-2 h-4 w-4" />
-                        View Code Snippet
-                      </Button>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                       <Button variant="outline" size="sm" asChild>
@@ -348,27 +170,6 @@ app.use('/api/users', userRoutes)
                       )}
                     </CardFooter>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-16 space-y-12">
-              <h3 className="text-2xl font-bold text-center mb-8">Code Snippets</h3>
-              {filteredRepos.map((repo) => (
-                <motion.div
-                  key={`code-${repo.id}`}
-                  id={`code-${repo.id}`}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="scroll-mt-24"
-                >
-                  <h4 className="text-xl font-semibold mb-4">{repo.name}</h4>
-                  <CodeSnippet
-                    code={codeSnippets[repo.name] || "// Code snippet not available"}
-                    language={repo.language.toLowerCase()}
-                  />
                 </motion.div>
               ))}
             </div>

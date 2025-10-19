@@ -130,10 +130,10 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">Email</h4>
                       <a
-                        href="mailto:contact@example.com"
+                        href="mailto:rayv9864@gmail.com"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
-                        contact@example.com
+                        rayv9864@gmail.com
                       </a>
                     </div>
                   </div>
@@ -145,12 +145,12 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">GitHub</h4>
                       <a
-                        href="https://github.com/username"
+                        href="https://github.com/Mr-Suraj1"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
-                        github.com/username
+                        github.com/Mr-Suraj1
                       </a>
                     </div>
                   </div>
@@ -162,12 +162,12 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">LinkedIn</h4>
                       <a
-                        href="https://linkedin.com/in/username"
+                        href="https://www.linkedin.com/in/suraj-kumar-ray-06415b241/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-primary transition-colors"
                       >
-                        linkedin.com/in/username
+                        linkedin.com/in/suraj-kumar-ray
                       </a>
                     </div>
                   </div>

@@ -39,7 +39,11 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-20 px-4 md:px-6 lg:px-8 scroll-mt-16">
+    <section id="about" className="relative py-20 px-4 md:px-6 lg:px-8 scroll-mt-16 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -48,8 +52,10 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            About <span className="text-primary">Me</span>
+          </h2>
+          <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/50 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Passionate full-stack developer and designer crafting digital experiences that make a difference
           </p>
@@ -112,12 +118,14 @@ export default function About() {
                   transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+                  <Card className="h-full hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 group">
                     <CardContent className="p-4 text-center">
-                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-3">
+                      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-3 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                         {highlight.icon}
                       </div>
-                      <h3 className="font-semibold mb-2 text-sm">{highlight.title}</h3>
+                      <h3 className="font-semibold mb-2 text-sm group-hover:text-primary transition-colors">
+                        {highlight.title}
+                      </h3>
                       <p className="text-xs text-muted-foreground leading-relaxed">{highlight.description}</p>
                     </CardContent>
                   </Card>

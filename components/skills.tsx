@@ -85,7 +85,11 @@ export default function Skills() {
   ]
 
   return (
-    <section id="skills" className="py-20 px-4 md:px-6 lg:px-8 bg-muted/30 scroll-mt-16">
+    <section id="skills" className="relative py-20 px-4 md:px-6 lg:px-8 bg-muted/30 scroll-mt-16 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -94,8 +98,10 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Technical <span className="text-primary">Skills</span>
+          </h2>
+          <div className="h-1 w-20 bg-gradient-to-r from-primary to-primary/50 mx-auto mb-6 rounded-full"></div>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             My comprehensive toolkit spans development, design, and deployment
           </p>
@@ -125,15 +131,21 @@ export default function Skills() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
+                  <Card className="h-full hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 group">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-2 mb-4">
-                        <div className="p-2 rounded-full bg-primary/10 text-primary">{category.icon}</div>
-                        <h3 className="font-semibold">{category.name}</h3>
+                        <div className="p-2 rounded-full bg-primary/10 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                          {category.icon}
+                        </div>
+                        <h3 className="font-semibold group-hover:text-primary transition-colors">{category.name}</h3>
                       </div>
                       <div className="space-y-2">
                         {category.skills.map((skill) => (
-                          <Badge key={skill.name} variant="outline" className="mr-2 mb-2">
+                          <Badge
+                            key={skill.name}
+                            variant="outline"
+                            className="mr-2 mb-2 hover:bg-primary/10 hover:border-primary/50 transition-colors"
+                          >
                             {skill.name}
                           </Badge>
                         ))}
@@ -155,15 +167,21 @@ export default function Skills() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="h-full hover:shadow-md transition-shadow duration-300">
+                  <Card className="h-full hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 transition-all duration-300 group">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-2 mb-4">
-                        <div className="p-2 rounded-full bg-primary/10 text-primary">{category.icon}</div>
-                        <h3 className="font-semibold">{category.category}</h3>
+                        <div className="p-2 rounded-full bg-primary/10 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                          {category.icon}
+                        </div>
+                        <h3 className="font-semibold group-hover:text-primary transition-colors">{category.category}</h3>
                       </div>
                       <div className="space-y-2">
                         {category.skills.map((skill) => (
-                          <Badge key={skill} variant="outline" className="mr-2 mb-2">
+                          <Badge
+                            key={skill}
+                            variant="outline"
+                            className="mr-2 mb-2 hover:bg-primary/10 hover:border-primary/50 transition-colors"
+                          >
                             {skill}
                           </Badge>
                         ))}
